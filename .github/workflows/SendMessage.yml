@@ -1,0 +1,41 @@
+name: Send Email on Workflow Run
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Email Notification
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const nodemailer = require('nodemailer');
+          const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_SERVER,
+            port: process.env.SMTP_PORT,
+            secure: false,
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD,
+            },
+          });
+
+          const info = await transporter.sendMail({
+            from: `"GitHub Actions" <${process.env.EMAIL_USER}>`,
+            to: process.env.EMAIL_TO,
+            subject: 'GitHub Actions Notification',
+            text: 'A new commit was pushed to the main branch!',
+          });
+
+          console.log('Message sent: %s', info.messageId);
+      env:
+        SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+        SMTP_PORT: ${{ secrets.SMTP_PORT }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        EMAIL_TO: ${{ secrets.EMAIL_TO }}
