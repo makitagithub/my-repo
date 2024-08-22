@@ -1,0 +1,32 @@
+#htmlで合計金額と人数を入力して、一人当たりの金額を計算するプログラムを作って
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="TestCodeC1.css">
+    <title>一人当たりの金額計算</title>
+</head>
+<body>
+    <h1>一人当たりの金額計算</h1>
+
+    <label for="totalAmount">合計金額：</label>
+    <input type="number" id="totalAmount" name="totalAmount" step="100">
+
+    <label for="totalPeople">人数：</label>
+    <input type="number" id="totalPeople" name="totalPeople">
+
+    <button onclick="calculate()">計算</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calculate() {
+            var totalAmount = document.getElementById("totalAmount").value;
+            var totalPeople = document.getElementById("totalPeople").value;
+
+            var perPersonAmount = totalAmount / totalPeople;
+
+            document.getElementById("result").innerHTML = "一人当たりの金額は " + perPersonAmount + " 円です。";
+        }
+    </script>
+</body>
+</html>

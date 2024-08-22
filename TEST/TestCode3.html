@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nikkei 225 Stock Index</title>
+    <script>
+        function fetchNikkei() {
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=nikkei-225&vs_currencies=jpy')
+                .then(response => response.json())
+                .then(data => {
+                    const nikkeiPrice = data['nikkei-225'].jpy;
+                    document.getElementById('nikkei-price').textContent = nikkeiPrice;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body onload="fetchNikkei()">
+    <h1>Nikkei 225 Stock Index</h1>
+    <p>Current price: <span id="nikkei-price"></span> JPY</p>
+</body>
+</html>
