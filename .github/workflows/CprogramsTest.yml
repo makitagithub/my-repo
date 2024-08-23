@@ -30,8 +30,8 @@ jobs:
 
     - name: Test Add.java
       run: |
-        echo "3 7" | java -cp TESTTEST Add | grep "10"
+        echo "3 7" | java -cp TESTTEST Add | tee output.txt | grep "10" || (cat output.txt && exit 1)
 
     - name: Test MulTen.java
       run: |
-        echo "5" | java -cp TESTTEST MulTen | grep "50"
+        echo "5" | java -cp TESTTEST MulTen | tee output.txt | grep "50" || (cat output.txt && exit 1)
