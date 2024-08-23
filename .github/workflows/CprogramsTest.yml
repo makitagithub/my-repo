@@ -1,4 +1,4 @@
-name: C Programs Test
+name: Java Programs Test
 
 on:
   push:
@@ -20,6 +20,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'adopt-openjdk'
 
     - name: Compile Add.java
       run: javac TESTTEST/Add.java
@@ -28,7 +29,9 @@ jobs:
       run: javac TESTTEST/MulTen.java
 
     - name: Test Add.java
-      run: echo "3 7" | java -cp TESTTEST.Add | grep -q "10"
+      run: |
+        echo "3 7" | java -cp TESTTEST Add | grep -q "10"
 
     - name: Test MulTen.java
-      run: echo "5" | java -cp TESTTEST.MulTen | grep -q "50"
+      run: |
+        echo "5" | java -cp TESTTEST MulTen | grep -q "50"
