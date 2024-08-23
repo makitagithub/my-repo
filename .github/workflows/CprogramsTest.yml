@@ -1,4 +1,4 @@
-name: Java Programs Test
+name: C Programs Test
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
       run: javac TESTTEST/MulTen.java
 
     - name: Test Add.java
-      run: echo "3 7" | java TESTTEST.Add | grep -q "10"
+      run: echo "3 7" | java -cp TESTTEST.Add | grep -q "10"
 
     - name: Test MulTen.java
-      run: echo "5" | java TESTTEST.MulTen | grep -q "50"
+      run: echo "5" | java -cp TESTTEST.MulTen | grep -q "50"
