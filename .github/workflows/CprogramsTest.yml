@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adoptium'  # 'adoptium' を指定することで、最新のAdoptOpenJDKディストリビューションを取得できます。
+        distribution: 'temurin'  # Eclipse Temurinディストリビューションを指定
 
     - name: Compile Add.java
       run: javac TESTTEST/Add.java
