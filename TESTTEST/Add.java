@@ -6,6 +6,6 @@ public class Add {
         int a = scanner.nextInt();
         int b = scanner.nextInt();
     int c = a + b;
-    System.err.println(c);
+    System.out.println(c);
     }
 }
